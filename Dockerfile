@@ -28,6 +28,10 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Set files permission
 RUN chmod a+x /init.sh /auto_update_job.sh /run.sh
 
+# Enable yarn 2
+RUN corepack enable
+RUN corepack prepare yarn@stable --activate
+
 EXPOSE 80
 VOLUME [ "/docusaurus" ]
 ENTRYPOINT [ "/init.sh" ]
